@@ -10,7 +10,7 @@ A port of Laravel 3's Str class. Made to work with Laravel 4.
 
 ### Composer Side
 
-add `"meido/str": "1.0.*"` to the `require` section of your `composer.json` so that it should look something the code below (you can, of course, include your own dependencies)
+add `"meido/str": "1.1.*"` to the `require` section of your `composer.json` so that it should look something the code below (you can, of course, include your own dependencies)
 
 ```composer
 ...
@@ -20,7 +20,7 @@ add `"meido/str": "1.0.*"` to the `require` section of your `composer.json` so t
 	...
 	...
 	...
-	"meido/str": "1.0.*"
+	"meido/str": "1.1.*"
 },
 ...
 ...
@@ -51,7 +51,7 @@ so that it'll look something like the following
 and add the following code to the `aliases` section of the `app/config/app.php` file
 
 ```php
-'Str' => 'Meido\Form\StrFacade',
+'Str' => 'Meido\Str\StrFacade',
 ```
 
 so that it'll look something like the following
@@ -62,14 +62,17 @@ so that it'll look something like the following
 	...
 	...
 	...
-	'Str'       => 'Meido\Form\StrFacade',
-	
+	'Str'       => 'Meido\Str\StrFacade',
+
 ),
 ```
 
 after that, run `composer install` and start hacking on that beast.
 
 ## Changelog
+
+### 1.1.*
+- dependencies are updated.
 
 ### 1.0.*
 - tagged for stable release. (1.0.0)
