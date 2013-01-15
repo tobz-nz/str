@@ -1,6 +1,5 @@
 <?php
 
-use Mockery as m;
 use Meido\Str\Str;
 
 class StrTest extends PHPUnit_Framework_TestCase {
@@ -16,14 +15,6 @@ class StrTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->str = new Str;
-	}
-
-	/**
-	 * Destroy test environment.
-	 */
-	public function tearDown()
-	{
-		m::close();
 	}
 
 	/**

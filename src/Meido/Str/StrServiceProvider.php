@@ -1,7 +1,6 @@
 <?php namespace Meido\Str;
 
 use Illuminate\Support\ServiceProvider;
-use Meido\Str\Str;
 
 class StrServiceProvider extends ServiceProvider {
 
@@ -10,7 +9,17 @@ class StrServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = true;
+	protected $defer = false;
+
+	/**
+	 * Bootstrap the application events.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$this->package('meido/str');
+	}
 
 	/**
 	 * Register the service provider.

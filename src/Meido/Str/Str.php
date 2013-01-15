@@ -90,7 +90,7 @@ class Str {
 
 	/**
 	 * Limit the number of chracters in a string including custom ending
-	 * 
+	 *
 	 * @param  string  $value
 	 * @param  int     $limit
 	 * @param  string  $end
