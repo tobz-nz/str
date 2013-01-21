@@ -1,5 +1,7 @@
 <?php namespace Meido\Str;
 
+use Illuminate\Support\Facades\Config as Config;
+
 define('MB_STRING', (int) function_exists('mb_get_info'));
 
 class Str {
@@ -208,6 +210,53 @@ class Str {
 			default:
 				throw new \Exception("Invalid random string type [$type].");
 		}
+	}
+
+
+
+	/**
+	 * Generate a URL friendly "slug" from a given string.
+	 *
+	 * <code>
+	 *		// Returns "this-is-my-blog-post"
+	 *		$slug = Str::slug('This is my blog post!');
+	 *
+	 *		// Returns "this_is_my_blog_post"
+	 *		$slug = Str::slug('This is my blog post!', '_');
+	 * </code>
+	 *
+	 * @param  string  $title
+	 * @param  string  $separator
+	 * @return string
+	 */
+	public static function slug($title, $separator = '-')
+	{
+		$title = static::ascii($title);
+
+		// Remove all characters that are not the separator, letters, numbers, or whitespace.
+		$title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', self::lower($title));
+
+		// Replace all separator characters and whitespace by a single separator
+		$title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
+
+		return trim($title, $separator);
+	}
+
+	/**
+	 * Convert a string to 7-bit ASCII.
+	 *
+	 * This is helpful for converting UTF-8 strings for usage in URLs, etc.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public static function ascii($value)
+	{
+		$foreign = Config::get('str::strings.ascii');
+
+		$value = preg_replace(array_keys($foreign), array_values($foreign), $value);
+
+		return preg_replace('/[^\x09\x0A\x0D\x20-\x7E]/', '', $value);
 	}
 
 }
