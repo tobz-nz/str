@@ -6,12 +6,12 @@ define('MB_STRING', (int) function_exists('mb_get_info'));
 
 class Str {
 
-    /**
-     * Cache application encoding locally to save expensive calls to Config::get().
-     *
-     * @var string
-     */
-    public $encoding = 'utf-8';
+	/**
+	 * Cache application encoding locally to save expensive calls to Config::get().
+	 *
+	 * @var string
+	 */
+	const encoding = 'utf-8';
 
 	/**
 	 * Get the length of a string.
@@ -19,7 +19,7 @@ class Str {
 	 * @param  string  $value
 	 * @return int
 	 */
-	public function length($value)
+	public static function length($value)
 	{
 		return (MB_STRING) ? mb_strlen($value, $this->encoding) : strlen($value);
 	}
@@ -30,9 +30,9 @@ class Str {
 	 * @param  string  $value
 	 * @return string
 	 */
-	public function lower($value)
+	public static function lower($value)
 	{
-		return (MB_STRING) ? mb_strtolower($value, $this->encoding) : strtolower($value);
+		return (MB_STRING) ? mb_strtolower($value, self::encoding) : strtolower($value);
 	}
 
 	/**
@@ -60,7 +60,7 @@ class Str {
 	 * @param  string  $value
 	 * @return string
 	 */
-	public function title($value)
+	public static function title($value)
 	{
 		if (MB_STRING)
 		{
@@ -78,7 +78,7 @@ class Str {
 	 * @param  string  $end
 	 * @return string
 	 */
-	public function limit($value, $limit = 100, $end = '...')
+	public static function limit($value, $limit = 100, $end = '...')
 	{
 		if ($this->length($value) <= $limit) return $value;
 
@@ -98,7 +98,7 @@ class Str {
 	 * @param  string  $end
 	 * @return string
 	 */
-	public function limit_exact($value, $limit = 100, $end = '...')
+	public static function limit_exact($value, $limit = 100, $end = '...')
 	{
 		if ($this->length($value) <= $limit) return $value;
 
@@ -115,7 +115,7 @@ class Str {
 	 * @param  string  $end
 	 * @return string
 	 */
-	public function words($value, $words = 100, $end = '...')
+	public static function words($value, $words = 100, $end = '...')
 	{
 		if (trim($value) == '') return '';
 
@@ -137,7 +137,7 @@ class Str {
 	 * @param  string  $value
 	 * @return string
 	 */
-	public function classify($value)
+	public static function classify($value)
 	{
 		$search = array('_', '-', '.');
 
@@ -150,7 +150,7 @@ class Str {
 	 * @param  string  $value
 	 * @return array
 	 */
-	public function segments($value)
+	public static function segments($value)
 	{
 		return array_diff(explode('/', trim($value, '/')), array(''));
 	}
@@ -162,7 +162,7 @@ class Str {
 	 * @param  string  $type
 	 * @return string
 	 */
-	public function random($length, $type = 'alnum')
+	public static function random($length, $type = 'alnum')
 	{
 		return substr(str_shuffle(str_repeat($this->pool($type), 5)), 0, $length);
 	}
@@ -174,7 +174,7 @@ class Str {
 	 * @param  string  $value
 	 * @return bool
 	 */
-	public function is($pattern, $value)
+	public static function is($pattern, $value)
 	{
 		// Asterisks are translated into zero-or-more regular expression wildcards
 		// to make it convenient to check if the URI starts with a given pattern
