@@ -106,4 +106,14 @@ class StrTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(40, strlen($this->str->random(40)));
 	}
 
+	/**
+	 * Test the Str random method.
+	 *
+	 * @group laravel
+	 */
+	public function testSlug()
+	{
+		$this->assertEquals('This-is-a-slug', $this->str->slug('This is a slug'));
+	}
+
 }
