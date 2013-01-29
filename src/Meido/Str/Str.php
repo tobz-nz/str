@@ -11,7 +11,16 @@ class Str {
 	 *
 	 * @var string
 	 */
-	const encoding = 'utf-8';
+	public static $encoding;
+
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		self::$encoding = 'utf-8';
+	}
 
 	/**
 	 * Get the length of a string.
@@ -21,7 +30,7 @@ class Str {
 	 */
 	public static function length($value)
 	{
-		return (MB_STRING) ? mb_strlen($value, $this->encoding) : strlen($value);
+		return (MB_STRING) ? mb_strlen($value, self::$encoding) : strlen($value);
 	}
 
 	/**
@@ -32,7 +41,7 @@ class Str {
 	 */
 	public static function lower($value)
 	{
-		return (MB_STRING) ? mb_strtolower($value, self::encoding) : strtolower($value);
+		return (MB_STRING) ? mb_strtolower($value, self::$encoding) : strtolower($value);
 	}
 
 	/**
@@ -43,7 +52,7 @@ class Str {
 	 */
 	public function upper($value)
 	{
-		return (MB_STRING) ? mb_strtoupper($value, $this->encoding) : strtoupper($value);
+		return (MB_STRING) ? mb_strtoupper($value, self::$encoding) : strtoupper($value);
 	}
 
 	/**
@@ -64,7 +73,7 @@ class Str {
 	{
 		if (MB_STRING)
 		{
-			return mb_convert_case($value, MB_CASE_TITLE, $this->encoding);
+			return mb_convert_case($value, MB_CASE_TITLE, self::$encoding);
 		}
 
 		return ucwords(strtolower($value));
@@ -84,7 +93,7 @@ class Str {
 
 		if (MB_STRING)
 		{
-			return mb_substr($value, 0, $limit, $this->encoding).$end;
+			return mb_substr($value, 0, $limit, self::$encoding).$end;
 		}
 
 		return substr($value, 0, $limit).$end;
